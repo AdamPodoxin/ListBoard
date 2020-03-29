@@ -1,0 +1,25 @@
+:root {
+    --list-width: 350px;
+
+    --corner-rounding: 8px;
+}
+
+.list {
+    width: var(--list-width);
+    border-radius: var(--corner-rounding);
+
+    padding: 4px;
+
+    background-color: #e4e4e4;
+}
+
+.list-title {
+    margin: 8px;
+    margin-bottom: 32px;
+    text-align: center;
+    
+    color: #333333;
+    font-size: 18px;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+}
