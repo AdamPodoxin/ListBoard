@@ -7,6 +7,13 @@ var itemModal;
 var itemModalText;
 
 var editingListItem;
+var editingList;
+
+const listItemTemplate =
+    "<div class='list-item'>"
+    + "<div class='item-status'></div>"
+    + "<div class='item-text'></div>"
+    + "</div>";
 
 function onLoad() {
     itemModal = document.getElementById("item-modal");
@@ -15,11 +22,16 @@ function onLoad() {
     var listItems = document.getElementsByClassName("list-item");
 
     Array.prototype.forEach.call(listItems, function (element) {
-        setStatus(element, "not done");
-        setText(element, "");
+        initializeListItem(element);
+    });
 
-        element.addEventListener("click", function (onClickEvent) {
-            openItemModal(onClickEvent.target);
+    var lists = document.getElementsByClassName("list");
+    Array.prototype.forEach.call(lists, function (element) {
+        element.innerHTML += "<div class='add-list-item'>+</div>";
+
+        getFirstChildWithClass(element, "add-list-item").addEventListener("click", function (onClickEvent) {
+            editingList = onClickEvent.target.parentNode;
+            addListItem();
         });
     });
 }
@@ -77,6 +89,35 @@ function setTextModal() {
 
 function setStatusModal(status) {
     setStatus(editingListItem, status);
+}
+
+function addListItem() {
+    var newListItem = document.createElement("div");
+    newListItem.setAttribute("class", "list-item");
+
+    var newListItemStatus = document.createElement("div");
+    newListItemStatus.setAttribute("class", "item-status");
+    newListItem.appendChild(newListItemStatus);
+
+    var newListItemText = document.createElement("div");
+    newListItemText.setAttribute("class", "item-text");
+    newListItem.appendChild(newListItemText);
+
+    initializeListItem(newListItem);
+
+    var addButton = editingList.childNodes[editingList.childNodes.length - 1];
+    editingList.insertBefore(newListItem, addButton);
+
+    openItemModal(newListItem);
+}
+
+function initializeListItem(listItem) {
+    setStatus(listItem, "not done");
+    setText(listItem, "");
+
+    listItem.addEventListener("click", function (onClickEvent) {
+        openItemModal(onClickEvent.target);
+    });
 }
 
 window.onload = onLoad();
