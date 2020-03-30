@@ -9,12 +9,6 @@ var itemModalText;
 var editingListItem;
 var editingList;
 
-const listItemTemplate =
-    "<div class='list-item'>"
-    + "<div class='item-status'></div>"
-    + "<div class='item-text'></div>"
-    + "</div>";
-
 function onLoad() {
     itemModal = document.getElementById("item-modal");
     itemModalText = document.getElementById("item-modal-text");
