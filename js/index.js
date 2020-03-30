@@ -105,6 +105,11 @@ function addListItem() {
     openItemModal(newListItem);
 }
 
+function deleteListItem() {
+    editingListItem.remove();
+    closeItemModal();
+}
+
 function initializeListItem(listItem) {
     setStatus(listItem, "not done");
     setText(listItem, "List item");

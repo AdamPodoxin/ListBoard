@@ -11,6 +11,8 @@
     --status-not-done: red;
     --status-in-progress: orange;
     --status-done: green;
+
+    --modal-button-width: 120px;
 }
 
 input[type="text"]:not(:focus) {
@@ -97,6 +99,7 @@ input[type="text"]:focus {
     margin-bottom: 10px;
 
     background-color: #f8f8f8;
+    color: green;
 
     text-align: center;
     font-family: "Baloo 2", sans-serif;
@@ -201,4 +204,15 @@ input[type="text"]:focus {
 
 #item-modal-status-done {
     background-color: var(--status-done);
+}
+
+#item-modal-delete {
+    position: absolute;
+
+    left: calc(50% - var(--modal-button-width) / 2);
+    bottom: 16px;
+
+    font-weight: bold;
+    color: red !important;
+    background-color: var(--input-selected-color);
 }
