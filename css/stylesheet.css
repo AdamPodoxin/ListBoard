@@ -1,8 +1,9 @@
 :root {
     --list-width: 350px;
     --list-item-width: 300px;
+    --list-background-color: #e4e4e4;
 
-    --corner-rounding: 8px;
+    --corner-rounding: 20px;
 
     --status-not-done: red;
     --status-in-progress: orange;
@@ -15,7 +16,7 @@
 
     padding: 4px;
 
-    background-color: #e4e4e4;
+    background-color: var(--list-background-color);
 }
 
 .list-title {
@@ -31,7 +32,7 @@
 
 .list-item {
     width: var(--list-item-width);
-    border-radius: var(--corner-rounding);
+    border-radius: 8px;
 
     margin: 12px;
     margin-left: auto;
@@ -44,6 +45,14 @@
     font-family: "Baloo 2", sans-serif;
 }
 
+.list-item:hover {
+    cursor: pointer;
+}
+
+.item-text {
+    pointer-events: none;
+}
+
 .item-status {
     width: var(--list-item-width);
     height: 3px;
@@ -52,4 +61,107 @@
     margin-bottom: 10px;
 
     background-color: var(--status-not-done);
+    
+    pointer-events: none;
+}
+
+#item-modal {
+    position: fixed; 
+    display: none;
+
+    width: 500px; 
+    height: 500px; 
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    border-radius: var(--corner-rounding);
+
+    margin: auto;
+
+    background-color: var(--list-background-color);
+    z-index: 2;
+}
+
+#close-item-modal-wrapper {
+    text-align: right;
+    margin: 8px;
+}
+
+#close-item-modal {
+    border-radius: 100px;
+    border: none;
+
+    width: 30px;
+    height: 30px;
+
+    font-size: 18px;
+    font-family: "Comic Neue", sans-serif;
+
+    background-color: #f5f5f5;
+}
+
+#close-item-modal:hover {
+    cursor: pointer;
+}
+
+#close-item-modal:focus {
+    outline: none;
+}
+
+#item-modal-text {
+    border-radius: 10px;
+    border: none;
+
+    width: 450px;
+
+    margin: 20px;
+    padding: 6px;
+
+    font-family: "Baloo 2", sans-serif;
+    font-size: 16px;
+
+    background-color: #f5f5f5;
+}
+
+#item-modal-text:focus {
+    outline: none;
+}
+
+#item-modal-status-buttons {
+    text-align: center;
+}
+
+#item-modal-status-buttons > button {
+    border-radius: 10px;
+    border: none;
+
+    width: 120px;
+    height: 40px;
+
+    font-family: "Baloo 2", sans-serif;
+    font-size: 16px;
+    color: white;
+}
+
+#item-modal-status-buttons > button:hover {
+    cursor: pointer;
+}
+
+#item-modal-status-buttons > button:focus {
+    outline: none;
+}
+
+#item-modal-status-not-done {
+    background-color: var(--status-not-done);
+}
+
+#item-modal-status-in-progress {
+    background-color: var(--status-in-progress);
+}
+
+#item-modal-status-done {
+    background-color: var(--status-done);
 }

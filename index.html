@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <link href="https://fonts.googleapis.com/css?family=Baloo+2|Lato&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Baloo+2|Lato|Comic+Neue&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
 
     <title>ListBoard</title>
@@ -28,6 +28,20 @@
         <div class="list-item">
             <div class="item-status"></div>
             <div class="item-text">Go to sleep at 10:00 pm</div>
+        </div>
+    </div>
+
+    <div id="item-modal">
+        <div id="close-item-modal-wrapper">
+            <button id="close-item-modal" onclick="closeItemModal();">X</button>
+        </div>
+
+        <input type="text" id="item-modal-text" onchange="setTextModal();">
+
+        <div id="item-modal-status-buttons">
+            <button id="item-modal-status-not-done" onclick="setStatusModal('not done');">Not Done</button>
+            <button id="item-modal-status-in-progress" onclick="setStatusModal('in progress');">In Progress</button>
+            <button id="item-modal-status-done" onclick="setStatusModal('done');">Done</button>
         </div>
     </div>
 
