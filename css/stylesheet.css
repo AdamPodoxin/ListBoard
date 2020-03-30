@@ -5,24 +5,41 @@
 
     --input-selected-color: #f5f5f5;
 
-    --corner-rounding: 20px;
+    --border-radius: 20px;
+    --border-radius-small: 8px;
 
     --status-not-done: red;
     --status-in-progress: orange;
     --status-done: green;
 }
 
+input[type="text"]:not(:focus) {
+    background-color: var(--list-background-color);
+}
+
+input[type="text"]:focus {
+    background-color: var(--input-selected-color);
+    outline: none;
+}
+
 .list {
     width: var(--list-width);
-    border-radius: var(--corner-rounding);
+    border-radius: var(--border-radius);
 
     padding: 4px;
 
     background-color: var(--list-background-color);
+
+    text-align: center;
 }
 
 .list-title {
-    margin: 8px;
+    width: var(--list-item-width);
+    height: calc(var(--list-item-width) / 10);
+
+    border-radius: var(--border-radius-small);
+
+    margin-top: 8px;
     margin-bottom: 32px;
     text-align: center;
     
@@ -30,11 +47,13 @@
     font-size: 18px;
     font-family: 'Lato', sans-serif;
     font-weight: bold;
+
+    border: none;
 }
 
 .list-item {
     width: var(--list-item-width);
-    border-radius: 8px;
+    border-radius: var(--border-radius-small);
 
     margin: 12px;
     margin-left: auto;
@@ -58,7 +77,7 @@
 .item-status {
     width: var(--list-item-width);
     height: 3px;
-    border-radius: var(--corner-rounding);
+    border-radius: var(--border-radius);
 
     margin-bottom: 10px;
 
@@ -70,7 +89,7 @@
 .add-list-item {
     width: calc(var(--list-item-width));
 
-    border-radius: 8px;
+    border-radius: var(--border-radius-small);
     border: none;
     
     margin: auto;
@@ -100,7 +119,7 @@
     right: 0;
     bottom: 0;
 
-    border-radius: var(--corner-rounding);
+    border-radius: var(--border-radius);
 
     margin: auto;
 
@@ -148,22 +167,12 @@
     text-align: center;
 }
 
-#item-modal-text:not(:focus) {
-    background-color: var(--list-background-color);
-}
-
-#item-modal-text:focus {
-    background-color: var(--input-selected-color);
-    outline: none;
-
-}
-
 #item-modal-status-buttons {
     text-align: center;
 }
 
 #item-modal-status-buttons > button {
-    border-radius: 10px;
+    border-radius: var(--border-radius-small);
     border: none;
 
     width: 120px;

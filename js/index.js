@@ -107,7 +107,7 @@ function addListItem() {
 
 function initializeListItem(listItem) {
     setStatus(listItem, "not done");
-    setText(listItem, "");
+    setText(listItem, "List item");
 
     listItem.addEventListener("click", function (onClickEvent) {
         openItemModal(onClickEvent.target);
