@@ -3,6 +3,8 @@
     --list-item-width: 300px;
     --list-background-color: #e4e4e4;
 
+    --input-selected-color: #f5f5f5;
+
     --corner-rounding: 20px;
 
     --status-not-done: red;
@@ -143,12 +145,17 @@
 
     font-family: "Baloo 2", sans-serif;
     font-size: 16px;
+    text-align: center;
+}
 
-    background-color: #f5f5f5;
+#item-modal-text:not(:focus) {
+    background-color: var(--list-background-color);
 }
 
 #item-modal-text:focus {
+    background-color: var(--input-selected-color);
     outline: none;
+
 }
 
 #item-modal-status-buttons {
