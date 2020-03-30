@@ -222,7 +222,7 @@ input[type="text"]:focus {
     text-align: center;
 }
 
-#item-modal-status-buttons > button {
+#item-modal-status-buttons > button, #item-modal-delete {
     border-radius: var(--border-radius-small);
     border: none;
 
@@ -232,13 +232,15 @@ input[type="text"]:focus {
     font-family: "Baloo 2", sans-serif;
     font-size: 16px;
     color: white;
+
+    box-shadow: 2px 4px rgba(0.5, 0.5, 0.5, 0.2);
 }
 
-#item-modal-status-buttons > button:hover {
+#item-modal-status-buttons > button:hover, #item-modal-delete:hover {
     cursor: pointer;
 }
 
-#item-modal-status-buttons > button:focus {
+#item-modal-status-buttons > button:focus, #item-modal-delete:focus {
     outline: none;
 }
 

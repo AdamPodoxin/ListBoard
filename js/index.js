@@ -5,6 +5,7 @@ statusColors.set("done", "var(--status-done)");
 
 var itemModal;
 var itemModalText;
+var itemModalStatusButtons;
 
 var board;
 
@@ -14,6 +15,7 @@ var editingList;
 function onLoad() {
     itemModal = document.getElementById("item-modal");
     itemModalText = document.getElementById("item-modal-text");
+    itemModalStatusButtons = Array.from(document.getElementById("item-modal-status-buttons").childNodes).filter(element => element.tagName == "BUTTON");
 
     board = document.getElementById("board");
 
@@ -70,6 +72,18 @@ function openItemModal(listItem) {
 
     itemModal.style.display = "block";
     itemModalText.value = listItem.getAttribute("text");
+
+    updateModalStatusButtons();
+}
+
+function updateModalStatusButtons() {
+    Array.prototype.forEach.call(itemModalStatusButtons, function (button) {
+        if (button.innerText.toLowerCase() == editingListItem.getAttribute("status")) {
+            button.style.boxShadow = "none";
+        } else {
+            button.style.boxShadow = "2px 4px rgba(0.5, 0.5, 0.5, 0.2)";
+        }
+    });
 }
 
 function closeItemModal() {
@@ -82,6 +96,7 @@ function setTextModal() {
 
 function setStatusModal(status) {
     setStatus(editingListItem, status);
+    updateModalStatusButtons();
 }
 
 function addListItem() {
