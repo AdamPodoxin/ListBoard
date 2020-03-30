@@ -24,13 +24,48 @@ input[type="text"]:focus {
     outline: none;
 }
 
-.list {
+#create-list {
     display: inline-block;
+    width: calc(var(--list-item-width));
+
+    border-radius: var(--border-radius-small);
+    border: none;
+    
+    margin: auto;
+    margin-top: 30px;
+
+    background-color: var(--list-background-color);
+    color: green;
+
+    text-align: center;
+    font-family: "Baloo 2", sans-serif;
+    font-size: 30px;
+}
+
+#create-list > p {
+    margin-top: var(--border-radius-small);
+    margin-bottom: var(--border-radius-small);
+    color: green;
+    
+    top: 0px;
+
+    text-align: center;
+    font-family: "Baloo 2", sans-serif;
+    font-size: 30px;
+}
+
+#create-list:hover {
+    cursor: pointer;
+}
+
+.list {
+    display: inline-table;
 
     width: var(--list-width);
     border-radius: var(--border-radius);
 
     margin-right: 20px;
+    margin-bottom: 40px;
     padding: 4px;
 
     background-color: var(--list-background-color);
@@ -91,7 +126,7 @@ input[type="text"]:focus {
     pointer-events: none;
 }
 
-.add-list-item {
+.add-list-item, .delete-list {
     width: calc(var(--list-item-width));
 
     border-radius: var(--border-radius-small);
@@ -100,7 +135,7 @@ input[type="text"]:focus {
     margin: auto;
     margin-top: 30px;
 
-    background-color: #f8f8f8;
+    background-color: var(--input-selected-color);
     color: green;
 
     text-align: center;
@@ -113,21 +148,10 @@ input[type="text"]:focus {
 }
 
 .delete-list {
-    width: calc(var(--list-item-width));
-
-    border-radius: var(--border-radius-small);
-    border: none;
-    
-    margin: auto;
     margin-top: 16px;
     margin-bottom: 10px;
 
-    background-color: #f8f8f8;
     color: red;
-
-    text-align: center;
-    font-family: "Baloo 2", sans-serif;
-    font-size: 30px;
 }
 
 .delete-list:hover {
@@ -169,7 +193,7 @@ input[type="text"]:focus {
     font-size: 18px;
     font-family: "Comic Neue", sans-serif;
 
-    background-color: #f5f5f5;
+    background-color: var(--input-selected-color);
 }
 
 #close-item-modal:hover {

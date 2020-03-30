@@ -6,12 +6,16 @@ statusColors.set("done", "var(--status-done)");
 var itemModal;
 var itemModalText;
 
+var board;
+
 var editingListItem;
 var editingList;
 
 function onLoad() {
     itemModal = document.getElementById("item-modal");
     itemModalText = document.getElementById("item-modal-text");
+
+    board = document.getElementById("board");
 
     var listItems = document.getElementsByClassName("list-item");
 
@@ -112,6 +116,21 @@ function initializeListItem(listItem) {
     listItem.addEventListener("click", function (onClickEvent) {
         openItemModal(onClickEvent.target);
     });
+}
+
+function createList() {
+    var newList = document.createElement("div");
+    newList.setAttribute("class", "list");
+
+    var newListTitle = document.createElement("input");
+    newListTitle.setAttribute("type", "text");
+    newListTitle.setAttribute("class", "list-title");
+    newListTitle.setAttribute("value", "List");
+    newList.appendChild(newListTitle);
+
+    board.insertBefore(newList, board.childNodes[board.childNodes.length - 2]);
+
+    initializeList(newList);
 }
 
 function initializeList(list) {
