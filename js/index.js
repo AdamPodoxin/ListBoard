@@ -21,12 +21,7 @@ function onLoad() {
 
     var lists = document.getElementsByClassName("list");
     Array.prototype.forEach.call(lists, function (element) {
-        element.innerHTML += "<div class='add-list-item'>+</div>";
-
-        getFirstChildWithClass(element, "add-list-item").addEventListener("click", function (onClickEvent) {
-            editingList = onClickEvent.target.parentNode;
-            addListItem();
-        });
+        initializeList(element);
     });
 }
 
@@ -99,7 +94,7 @@ function addListItem() {
 
     initializeListItem(newListItem);
 
-    var addButton = editingList.childNodes[editingList.childNodes.length - 1];
+    var addButton = editingList.childNodes[editingList.childNodes.length - 2];
     editingList.insertBefore(newListItem, addButton);
 
     openItemModal(newListItem);
@@ -117,6 +112,28 @@ function initializeListItem(listItem) {
     listItem.addEventListener("click", function (onClickEvent) {
         openItemModal(onClickEvent.target);
     });
+}
+
+function initializeList(list) {
+    var addItemButton = document.createElement("div");
+    addItemButton.setAttribute("class", "add-list-item");
+    addItemButton.innerHTML = "+";
+
+    addItemButton.addEventListener("click", function (onClickEvent) {
+        editingList = onClickEvent.target.parentNode;
+        addListItem();
+    });
+
+    var deleteList = document.createElement("div");
+    deleteList.setAttribute("class", "delete-list");
+    deleteList.innerHTML = "-";
+
+    deleteList.addEventListener("click", function (onClickEvent) {
+        onClickEvent.target.parentNode.remove();
+    });
+
+    list.appendChild(addItemButton);
+    list.appendChild(deleteList);
 }
 
 window.onload = onLoad();

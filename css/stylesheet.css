@@ -25,9 +25,12 @@ input[type="text"]:focus {
 }
 
 .list {
+    display: inline-block;
+
     width: var(--list-width);
     border-radius: var(--border-radius);
 
+    margin-right: 20px;
     padding: 4px;
 
     background-color: var(--list-background-color);
@@ -96,7 +99,6 @@ input[type="text"]:focus {
     
     margin: auto;
     margin-top: 30px;
-    margin-bottom: 10px;
 
     background-color: #f8f8f8;
     color: green;
@@ -107,6 +109,28 @@ input[type="text"]:focus {
 }
 
 .add-list-item:hover {
+    cursor: pointer;
+}
+
+.delete-list {
+    width: calc(var(--list-item-width));
+
+    border-radius: var(--border-radius-small);
+    border: none;
+    
+    margin: auto;
+    margin-top: 16px;
+    margin-bottom: 10px;
+
+    background-color: #f8f8f8;
+    color: red;
+
+    text-align: center;
+    font-family: "Baloo 2", sans-serif;
+    font-size: 30px;
+}
+
+.delete-list:hover {
     cursor: pointer;
 }
 
