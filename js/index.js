@@ -13,6 +13,7 @@ var editingListItem;
 var editingList;
 
 function onLoad() {
+    //UI setup
     itemModal = document.getElementById("item-modal");
     itemModalText = document.getElementById("item-modal-text");
     itemModalStatusButtons = Array.from(document.getElementById("item-modal-status-buttons").childNodes).filter(element => element.tagName == "BUTTON");
@@ -28,6 +29,20 @@ function onLoad() {
     var lists = document.getElementsByClassName("list");
     Array.prototype.forEach.call(lists, function (element) {
         initializeList(element);
+    });
+
+    //Update inputs response to enter key pressed
+    var inputs = Array.from(document.getElementsByTagName("input")).filter(element => element.type == "text");
+    inputs.forEach(input => {
+        updateInputResponse(input);
+    });
+}
+
+function updateInputResponse(inputField) {
+    inputField.addEventListener("keydown", event => {
+        if (event.keyCode == 13 /* if enter key is pressed */) {
+            inputField.blur();
+        }
     });
 }
 
@@ -123,8 +138,8 @@ function initializeListItem(listItem) {
     setStatus(listItem, "not done");
     setText(listItem, "List item");
 
-    listItem.addEventListener("click", function (onClickEvent) {
-        openItemModal(onClickEvent.target);
+    listItem.addEventListener("click", event => {
+        openItemModal(event.target);
     });
 }
 
@@ -137,6 +152,7 @@ function createList() {
     newListTitle.setAttribute("class", "list-title");
     newListTitle.setAttribute("value", "List");
     newList.appendChild(newListTitle);
+    updateInputResponse(newListTitle);
 
     board.insertBefore(newList, board.childNodes[board.childNodes.length - 2]);
 
@@ -148,8 +164,8 @@ function initializeList(list) {
     addItemButton.setAttribute("class", "add-list-item");
     addItemButton.innerHTML = "+";
 
-    addItemButton.addEventListener("click", function (onClickEvent) {
-        editingList = onClickEvent.target.parentNode;
+    addItemButton.addEventListener("click", event => {
+        editingList = event.target.parentNode;
         addListItem();
     });
 
@@ -157,8 +173,8 @@ function initializeList(list) {
     deleteList.setAttribute("class", "delete-list");
     deleteList.innerHTML = "-";
 
-    deleteList.addEventListener("click", function (onClickEvent) {
-        onClickEvent.target.parentNode.remove();
+    deleteList.addEventListener("click", event => {
+        event.target.parentNode.remove();
     });
 
     list.appendChild(addItemButton);
