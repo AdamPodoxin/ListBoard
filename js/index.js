@@ -52,8 +52,7 @@ function displayStatus(listItem) {
     var status = listItem.getAttribute("status");
     var color = statusColors.get(status);
 
-    var statusBar = getFirstChildWithClass(listItem, "item-status");
-    statusBar.style.backgroundColor = color;
+    listItem.style.borderColor = color;
 }
 
 function getFirstChildWithClass(element, childClass) {
@@ -102,10 +101,6 @@ function setStatusModal(status) {
 function addListItem() {
     var newListItem = document.createElement("div");
     newListItem.setAttribute("class", "list-item");
-
-    var newListItemStatus = document.createElement("div");
-    newListItemStatus.setAttribute("class", "item-status");
-    newListItem.appendChild(newListItemStatus);
 
     var newListItemText = document.createElement("div");
     newListItemText.setAttribute("class", "item-text");
