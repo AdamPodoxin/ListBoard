@@ -12,6 +12,8 @@ var board;
 var editingListItem;
 var editingList;
 
+var lists = [];
+
 function onLoad() {
     //UI setup
     itemModal = document.getElementById("item-modal");
@@ -146,6 +148,7 @@ function initializeListItem(listItem) {
 function createList() {
     var newList = document.createElement("div");
     newList.setAttribute("class", "list");
+    newList.setAttribute("title", "List");
 
     var newListTitle = document.createElement("input");
     newListTitle.setAttribute("type", "text");
@@ -153,6 +156,11 @@ function createList() {
     newListTitle.setAttribute("value", "List");
     newList.appendChild(newListTitle);
     updateInputResponse(newListTitle);
+    lists.push(newList);
+
+    newListTitle.addEventListener("change", event => {
+        event.target.parentNode.setAttribute("title", event.target.value);
+    });
 
     board.insertBefore(newList, board.childNodes[board.childNodes.length - 2]);
 
@@ -174,7 +182,9 @@ function initializeList(list) {
     deleteList.innerHTML = "-";
 
     deleteList.addEventListener("click", event => {
-        event.target.parentNode.remove();
+        editingList = event.target.parentNode;
+        lists.remove(editingList);
+        editingList.remove();
     });
 
     list.appendChild(addItemButton);
