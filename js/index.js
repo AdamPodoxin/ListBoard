@@ -32,6 +32,7 @@ function onLoad() {
         });
 
         moveToList.insertBefore(editingListItem, moveToList.childNodes[moveToList.childNodes.length - 2]);
+        editingList = moveToList;
     });
 
     board = document.getElementById("board");
@@ -218,6 +219,20 @@ function initializeList(list) {
     option.innerHTML = list.getAttribute("title");
     itemModalMoveToDropdown.appendChild(option);
     itemModalMoveToDropdownOptions.push(option);
+}
+
+function moveItem(index) {
+    var newIndex = Array.from(editingList.childNodes).indexOf(editingListItem) + index;
+    if (index > 0) {
+        newIndex++;
+    }
+
+    if (newIndex > editingList.childNodes.length - 2 || newIndex < 1) {
+        return;
+    }
+
+    var itemBefore = editingList.childNodes[newIndex];
+    editingList.insertBefore(editingListItem, itemBefore);
 }
 
 window.onload = onLoad();

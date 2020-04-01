@@ -266,6 +266,12 @@ label[for="item-modal-move-to"] {
     font-size: 16px;
 }
 
+#item-modal-move-to-section {
+    text-align: left;
+    margin: 64px;
+    display: inline-block;
+}
+
 #item-modal-move-to {
     width: 120px;
     height: 40px;
@@ -283,6 +289,40 @@ label[for="item-modal-move-to"] {
     outline: none;
 }
 
+#item-modal-move-section {
+    text-align: right;
+    margin: 64px;
+    display: inline-block;
+}
+
+#item-modal-move-section > button {
+    display: block;
+
+    width: 40px;
+    height: 40px;
+
+    border: none;
+    border-radius: var(--border-radius-small);
+
+    margin: 8px;
+
+    font-family: "Baloo 2", sans-serif;
+    font-size: 20px;
+    box-shadow: 2px 4px rgba(0.5, 0.5, 0.5, 0.2);
+}
+
+#item-modal-move-section > button:hover {
+    cursor: pointer;
+}
+
+#item-modal-move-section > button:focus {
+    outline: none;
+}
+
+#item-modal-move-section > button:active {
+    box-shadow: none;
+}
+
 #item-modal-delete {
     position: absolute;
 
@@ -292,4 +332,8 @@ label[for="item-modal-move-to"] {
     font-weight: bold;
     color: red !important;
     background-color: var(--input-selected-color);
+}
+
+#item-modal-delete:active {
+    box-shadow: none;
 }

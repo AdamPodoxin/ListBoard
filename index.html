@@ -27,13 +27,18 @@
             <button id="item-modal-status-in-progress" onclick="setStatusModal('in progress');">In Progress</button>
             <button id="item-modal-status-done" onclick="setStatusModal('done');">Done</button>
         </div>
-        <br>
 
-        <label for="item-modal-move-to">Move to list:</label>
-        <select id="item-modal-move-to">
-        </select>
+        <div id="item-modal-move-to-section">
+            <label for="item-modal-move-to">Move to list:</label>
+            <select id="item-modal-move-to">
+            </select>
+        </div>
 
-        <br>
+        <div id="item-modal-move-section">
+            <button onclick="moveItem(-1);">&uarr;</button>
+            <button onclick="moveItem(1);">&darr;</button>
+        </div>
+
         <button id="item-modal-delete" onclick="deleteListItem();">Delete</button>
     </div>
 
