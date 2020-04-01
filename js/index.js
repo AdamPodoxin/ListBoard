@@ -6,6 +6,8 @@ statusColors.set("done", "var(--status-done)");
 var itemModal;
 var itemModalText;
 var itemModalStatusButtons;
+var itemModalMoveToDropdown;
+var itemModalMoveToDropdownOptions = [];
 
 var board;
 
@@ -19,17 +21,29 @@ function onLoad() {
     itemModal = document.getElementById("item-modal");
     itemModalText = document.getElementById("item-modal-text");
     itemModalStatusButtons = Array.from(document.getElementById("item-modal-status-buttons").childNodes).filter(element => element.tagName == "BUTTON");
+    itemModalMoveToDropdown = document.getElementById("item-modal-move-to");
+
+    itemModalMoveToDropdown.addEventListener("change", event => {
+        var moveToList;
+        Array.from(lists).forEach(element => {
+            if (element.getAttribute("title") == itemModalMoveToDropdown.value) {
+                moveToList = element;
+            }
+        });
+
+        moveToList.insertBefore(editingListItem, moveToList.childNodes[moveToList.childNodes.length - 2]);
+    });
 
     board = document.getElementById("board");
 
     var listItems = document.getElementsByClassName("list-item");
 
-    Array.prototype.forEach.call(listItems, function (element) {
+    Array.prototype.forEach.call(listItems, element => {
         initializeListItem(element);
     });
 
     var lists = document.getElementsByClassName("list");
-    Array.prototype.forEach.call(lists, function (element) {
+    Array.prototype.forEach.call(lists, element => {
         initializeList(element);
     });
 
@@ -88,6 +102,8 @@ function openItemModal(listItem) {
 
     itemModal.style.display = "block";
     itemModalText.value = listItem.getAttribute("text");
+
+    itemModalMoveToDropdown.value = null;
 
     updateModalStatusButtons();
 }
@@ -149,6 +165,8 @@ function createList() {
     var newList = document.createElement("div");
     newList.setAttribute("class", "list");
     newList.setAttribute("title", "List");
+    newList.setAttribute("index", lists.length);
+    lists.push(newList);
 
     var newListTitle = document.createElement("input");
     newListTitle.setAttribute("type", "text");
@@ -156,10 +174,12 @@ function createList() {
     newListTitle.setAttribute("value", "List");
     newList.appendChild(newListTitle);
     updateInputResponse(newListTitle);
-    lists.push(newList);
 
     newListTitle.addEventListener("change", event => {
         event.target.parentNode.setAttribute("title", event.target.value);
+
+        var listIndex = event.target.parentNode.getAttribute("index");
+        itemModalMoveToDropdownOptions[listIndex].innerHTML = event.target.value;
     });
 
     board.insertBefore(newList, board.childNodes[board.childNodes.length - 2]);
@@ -183,12 +203,21 @@ function initializeList(list) {
 
     deleteList.addEventListener("click", event => {
         editingList = event.target.parentNode;
-        lists.remove(editingList);
+        lists.splice(lists.indexOf(editingList), 1);
         editingList.remove();
+
+        var listOption = itemModalMoveToDropdownOptions[editingList.getAttribute("index")];
+        itemModalMoveToDropdownOptions.splice(itemModalMoveToDropdownOptions.indexOf(listOption), 1);
+        listOption.remove();
     });
 
     list.appendChild(addItemButton);
     list.appendChild(deleteList);
+
+    var option = document.createElement("option");
+    option.innerHTML = list.getAttribute("title");
+    itemModalMoveToDropdown.appendChild(option);
+    itemModalMoveToDropdownOptions.push(option);
 }
 
 window.onload = onLoad();
